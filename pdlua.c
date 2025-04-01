@@ -2385,6 +2385,28 @@ static int pdlua_post(lua_State *L)
     return 0;
 }
 
+static int pdlua_setcursor(lua_State *L){
+    t_pdlua     *o;
+    if (lua_islightuserdata(L, 1))
+    {
+        o = lua_touserdata(L, 1);
+        const char *cursor  = luaL_checkstring(L, 2);
+        pdgui_vmess(0, "^r rr", o->canvas, "configure", "-cursor", cursor);
+    }
+    return 0;
+}
+
+static int pdlua_resetcursor(lua_State *L){
+    t_pdlua     *o;
+    if (lua_islightuserdata(L, 1))
+    {
+        o = lua_touserdata(L, 1);
+        canvas_setcursor(o->canvas, 0);
+    }
+    return 0;
+}
+
+
 /** Report an error from a Lua object to Pd's console. */
 static int pdlua_error(lua_State *L)
 /**< Lua interpreter state.
@@ -2801,6 +2823,12 @@ static void pdlua_init(lua_State *L)
     lua_settable(L, -3);
     lua_pushstring(L, "_error");
     lua_pushcfunction(L, pdlua_error);
+    lua_settable(L, -3);
+    lua_pushstring(L, "_setcursor");
+    lua_pushcfunction(L, pdlua_setcursor);
+    lua_settable(L, -3);
+    lua_pushstring(L, "_resetcursor");
+    lua_pushcfunction(L, pdlua_resetcursor);
     lua_settable(L, -3);
     /* 20240906 ag: Added TIMEUNITPERMSEC, systime and timesince, to make
        clock_set useable. NOTE: TIMEUNITPERMSEC is the time unit for systime,

@@ -553,6 +553,14 @@ function pd.Class:error(msg)
   pd._error(self._object, msg)
 end
 
+function pd.Class:setcursor(cursor)
+  pd._setcursor(self._object, cursor)
+end
+
+function pd.Class:resetcursor()
+  pd._resetcursor(self._object)
+end
+
 function pd.Class:whoami()
   return self._scriptname or self._name
 end
