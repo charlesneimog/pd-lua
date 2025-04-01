@@ -1315,7 +1315,7 @@ static int pdlua_set_arguments(lua_State *L)
             if (redraw) {
                 // update the text in the object box; this makes sure that
                 // the arguments in the display are what we just set
-                t_rtext *y = glist_findrtext(o->canvas, x);
+                t_rtext *y = glist_getrtext(o->canvas, x);
                 rtext_retext(y);
                 // redraw the object and its iolets (including incident
                 // cord lines), in case the object box size has changed
