@@ -45,6 +45,17 @@ typedef struct _pdlua_gfx
     // Variables to keep track of mouse button state and drag position
     int mouse_drag_x, mouse_drag_y, mouse_down;
     int first_draw;
+
+    // variables to set properties
+    t_symbol *current_frame;
+    t_symbol *properties_receiver;
+    int frame_count;
+    int max_col, max_row;
+    int current_col, current_row;
+
+    int checkbox_count;
+    int numberbox_count;
+    int colorpicker_count;
     
 #else
     int current_layer;
