@@ -105,7 +105,6 @@ end
 
 -- set properties
 pd._set_properties = function (object, method, args)
-    pd.post(method)
   local obj = pd._objects[object]
   if obj ~= nil and type(obj[method]) == "function" then
         local propertiesmethod = obj[method]
