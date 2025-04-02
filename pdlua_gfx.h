@@ -1996,7 +1996,7 @@ static void pdlua_properties_receiver(t_pdlua *o, t_symbol *s, int argc, t_atom 
             lua_rawseti(__L(), -2, 2);
             lua_pushinteger(__L(), b);
             lua_rawseti(__L(), -2, 3);
-            lua_rawseti(__L(), -2, 1); // Insert inner table as the first element of the outer table
+            lua_rawseti(__L(), -2, 1); 
         } else {
             pd_error(o, "Invalid color format in sscanf");
             return;
